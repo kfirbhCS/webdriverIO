@@ -6,14 +6,11 @@ wdioConf.capabilities=[{
   // 5 instances get started at a time.
   maxInstances: 5,
   //
-  browserName: 'chrome',
-  chromeOptions: {
-    args: ['window-size=2880,1800']
-  }
+  browserName: 'chrome'
 }]
 
 wdioConf.specs=[
-  './test/fileUpload.spec.ts'
+  './test/*.spec.ts'
 ]
 wdioConf.suites = {
   login: [
