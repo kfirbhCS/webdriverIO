@@ -21,10 +21,7 @@ node("Automation_Linux_Slave_01") {
     sh ' npm run report-ci'
 
   }
-
-  post {
-    always {
-      script {
+  stage('Post Build'){
         allure([
           includeProperties: false,
           jdk: '',
@@ -33,8 +30,6 @@ node("Automation_Linux_Slave_01") {
           results: [
             [path: 'allure-results']
           ]
-        ])
-      }
-    }
+    ])
   }
 }
