@@ -9,13 +9,16 @@ node("Automation_Linux_Slave_01") {
     sh 'npm install'
   }
   stage('Test') {
-
-    sh 'npm run test-grid'
+    try {
+      sh 'npm run test-grid'
+    }catch(Exception e){
+          println("Exception: ${e}")
+    }
 
   }
   stage('generate allure') {
 
-    sh 'npm run report-ci'
+    sh ' npm run report-ci'
 
   }
 
