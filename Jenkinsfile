@@ -6,16 +6,16 @@ node("Automation_Linux_Slave_01") {
   stage('Build') {
     sh 'ls -la'
     sh 'pwd'
-    sh 'sudo npm install'
+    sh 'npm install'
   }
   stage('Test') {
 
-    sh 'sudo npm run test-grid'
+    sh 'npm run test-grid'
 
   }
   stage('generate allure') {
 
-    sh 'sudo npm run report-ci'
+    sh 'npm run report-ci'
 
   }
 
