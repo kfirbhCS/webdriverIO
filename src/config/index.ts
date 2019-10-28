@@ -1,11 +1,10 @@
 const shared = {
-    // Default user logged in for most tests
-    username: 'tomsmith',
-    email: 'tom@example.com',
-    alternateEmail: 'josh@example.com',
+    CSEmail: "te+ch@contentsquare.com",
+    CSPassword: "Qwerty1234!"
 };
 
 const production = {
+    csHomePage : "https://staging-app.contentsquare.com/88#/",
     password: 'SuperSecretPassword!',
     domain: 'app.example.com',
     userId: '123',
@@ -13,6 +12,7 @@ const production = {
 };
 
 const staging = {
+    csHomePage : "https://staging-app.contentsquare.com/88#/",
     password: 'Pa$$w0rd',
     domain: 'staging.example.com',
     userId: '456',
