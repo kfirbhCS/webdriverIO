@@ -1,11 +1,12 @@
 import CsBasePage from 'src/pages/CS/CsBasePage'
+import TopPanel from '/src/components/TopPanel'
 
 export default class CsDashboardPage extends CsBasePage {
   public constructor(){
     super();
     this.waitForLoad();
+    
    }
-   
    private getVisitsCB(){
      return $(".visits-checkbox")
    }
@@ -29,17 +30,32 @@ export default class CsDashboardPage extends CsBasePage {
     try{
       browser.waitUntil(() => {
         return this.getChart.isDisplayed()
-      },30000,"waiting for chart")
+      },60000,"waiting for chart")
   
     }catch(err){
-      console.error(err)
-      console.log(browser.getPageSource())
+      console.error("Chart loading took too long")
     }
-    
-    console.log("loading dashboard : ${pageHeaderText}")
    }
 
    public clickOnVisitsCB(){
-     this.getVisitsCB().$('..').click();
+    try{
+      this.getVisitsCB().$('..').$(".cs-checkbox-styled").click();
+    } catch(err){
+      console.log("Failed to click on cb")
+    }
+    
    }
+
+   public clickOnConversionCB(){
+    try{
+      this.getConversionCB().$('..').$(".cs-checkbox-styled").click();
+    }
+    catch(err){
+      console.log("Failed to click on cb")
+    }
+  }
+
+  public getTopPanel(){
+    return new TopPanel();
+  }
 }

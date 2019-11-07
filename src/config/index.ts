@@ -4,19 +4,19 @@ const shared = {
 };
 
 const production = {
-    csHomePage : "https://staging-app.contentsquare.com/88#/",
-    password: 'SuperSecretPassword!',
-    domain: 'app.example.com',
-    userId: '123',
-    accessToken: 'a82f0e9a-1689-49ab-8456-161a44ca2365',
+    csHomePage : "https://uxanalytics.content-square.fr/728#/site-overview",
+    CSEmail: 'abhinav.chadha+test2406@contentsquare.com',
+    CSPassword: 'Test1234!',
+    ZoningGroup: "AB - Vitrines",
+    ZoningPage:"logins",
 };
 
 const staging = {
     csHomePage : "https://staging-app.contentsquare.com/88#/",
-    password: 'Pa$$w0rd',
-    domain: 'staging.example.com',
-    userId: '456',
-    accessToken: 'f95da72f-e8fd-492b-ac6d-0efb3eba428b',
+    CSEmail: "te+ch@contentsquare.com",
+    CSPassword: "Qwerty1234!",
+    ZoningGroup: "AB - Vitrines",
+    ZoningPage:"logins",
 };
 
 const generateConfig = () => {

@@ -8,7 +8,6 @@ export default class CsBasePage extends BasePage {
     });
   }
   get navigateToHomePage(){
-    console.log(config)
     return browser.url(config.csHomePage)
   }
 

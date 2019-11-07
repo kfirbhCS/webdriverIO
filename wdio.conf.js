@@ -1,4 +1,5 @@
-const timeout = process.env.DEBUG ? 99999999 : 60000;
+
+const timeout = process.env.DEBUG ? 99999999 : 120000;
 
 exports.config = {
   //
@@ -9,7 +10,7 @@ exports.config = {
   // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
   // on a remote machine).
   debug: process.env.DEBUG === '1',
-  execArgv: process.env.DEBUG === '1' ? ['--inspect-brk=127.0.0.1:2345'] : [],
+  execArgv: process.env.DEBUG === '1' ? ['--inspect-brk=127.0.0.1:5859'] : [],
   runner: 'local',
 
   //
@@ -146,9 +147,14 @@ exports.config = {
    */
   onPrepare: function (capabilities) {
     console.log("********Prepare*****************")
+    const rimraf = require('rimraf');
+    rimraf('ScreenShots/*', function () {
+      console.log('ScreenShots cleared');
+    });
   },
 
   before: function (capabilities, specs) {
+    console.log("**BEFORE**")
     require('ts-node').register({
       files: true
     });
@@ -175,7 +181,7 @@ exports.config = {
   beforeTest: function (test) {
     browser.maximizeWindow()
     console.log('----METHOD STARTS: ' + test.title + '-----------')
-    if(this.hostname){
+    if (this.hostname) {
       console.log('Grid node Address ' + browser.gridTestSession(browser.sessionId).proxyId)
     }
   },
@@ -184,7 +190,6 @@ exports.config = {
    * beforeEach in Mocha)
    */
   beforeHook: function () {
-
   },
   /**
    * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
@@ -206,9 +211,9 @@ exports.config = {
    * Hook that gets executed after the suite has ended
    * @param {Object} suite suite details
    */
-   afterSuite: function (suite) {
+  afterSuite: function (suite) {
     console.log('----SUITE FINISHED: ' + suite.title + '-----------')
-    },
+  },
 
   /**
    * Runs after a WebdriverIO command gets executed
@@ -235,7 +240,7 @@ exports.config = {
    * @param {Array.<String>} specs List of spec file paths that ran
    */
   afterSession: function (config, capabilities, specs) {
-    console.log('SESSION ENDED ')
+    //console.log('SESSION ENDED ')
   },
   /**
    * Gets executed after all workers got shut down and the process is about to exit.
@@ -244,7 +249,8 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  onComplete: function(exitCode, config, capabilities, results) {
+  onComplete: function (exitCode, config, capabilities, results) {
+
     console.log("**********************************************************")
     console.log("Execution completed with exit code " + exitCode + " results : " + JSON.stringify(results))
   }

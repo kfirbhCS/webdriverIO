@@ -1,11 +1,34 @@
 import CsLoginPage from 'src/pages/cs/CsLoginPage'
 import {config} from 'src/config'
+import {DeviceType} from 'src/components/DeviceTypePanel'
+import ClientZonnigPage from 'src/pages/CS/ClientZoningPage'
 import {expect} from 'chai';
-import LogInPage from 'src/pages/LogInPage';
-describe('CSLogin',() =>{
-  it('should commit login', ()=>{
+describe('TEST-559',() =>{
+  
+  it('should creat new zoning', ()=>{
     let loginPage = new CsLoginPage()
-    let cs_dashbord_page = loginPage.loadPageAndLogin(config.CSEmail,config.CSPassword)
-    cs_dashbord_page.clickOnVisitsCB()
+    let currentPage = loginPage.loadPageAndLogin(config.CSEmail,config.CSPassword )
+    let zoningPage =currentPage.getTopPanel().clickOnAnalyseTab().clickOnZoningAnalysisOption();
+    let zoningModal = zoningPage.clickOnNewZoningButton();
+    zoningModal.selectMappingAndPageByText(config.ZoningGroup,config.ZoningPage)
+    //$(".device-selector-container").$(".device-selector-item")
+    zoningModal.selectDeviceType(DeviceType.Mobile)
+    zoningModal.selectDeviceType(DeviceType.Desktop)
+    zoningModal.clickOnLetsGoBtn();
+    ////////////////////////////
+    zoningPage.moveToNewWindow()
+    let clientZonnigPage = new ClientZonnigPage();
+    clientZonnigPage.clickOnAcceptButton();
+    clientZonnigPage.closeClientWindow();
+    zoningPage.backToOriginalWindow();
+    zoningModal.clickOnLetsGoBtn();
+    zoningPage.moveToNewWindow()
+    clientZonnigPage.clickOnClientSiteEmailTB()
+    clientZonnigPage.clickOnSaveInClientWebSite();
+    clientZonnigPage.setZoningName("Automation_")
+    clientZonnigPage.clickOnSaveToContentSquare()
+    zoningPage.backToOriginalWindow();
+    let isloaded = zoningPage.isZoningLoaded()
+    expect(isloaded).to.eq(true, "Zoning wasn't loaded")
   })
 })
