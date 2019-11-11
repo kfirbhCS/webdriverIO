@@ -40,7 +40,6 @@ class CsLoginPage extends CsBasePage_1.default {
      */
     loadPageAndLogin(email, password) {
         this.loadLoginPage();
-        browser.debug();
         if (this.dashboard.isDisplayed()) {
             console.log("dashboard page is allready loaded");
             return new CsDashboardPage_1.default();
