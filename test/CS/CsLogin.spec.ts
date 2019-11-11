@@ -3,9 +3,12 @@ import {config} from 'src/config'
 import {DeviceType} from 'src/components/DeviceTypePanel'
 import ClientZonnigPage from 'src/pages/CS/ClientZoningPage'
 import {expect} from 'chai';
+
+
 describe('TEST-559',() =>{
-  
-  it('should creat new zoning', ()=>{
+ 
+  it('should creat new zonning', ()=>{
+    
     let loginPage = new CsLoginPage()
     let currentPage = loginPage.loadPageAndLogin(config.CSEmail,config.CSPassword )
     let zoningPage =currentPage.getTopPanel().clickOnAnalyseTab().clickOnZoningAnalysisOption();
@@ -29,6 +32,15 @@ describe('TEST-559',() =>{
     clientZonnigPage.clickOnSaveToContentSquare()
     zoningPage.backToOriginalWindow();
     let isloaded = zoningPage.isZoningLoaded()
-    expect(isloaded).to.eq(true, "Zoning wasn't loaded")
+    expect(isloaded).to.eq(true, "Zonning wasn't loaded")
+  })
+
+  it('should load saved zoning' , () => {
+    let loginPage = new CsLoginPage()
+    let currentPage = loginPage.loadPageAndLogin(config.CSEmail,config.CSPassword )
+    let zoningPage =currentPage.getTopPanel().clickOnAnalyseTab().clickOnZoningAnalysisOption();
+    zoningPage.clickOnRowByZoneName("Automation_")
+    let isloaded = zoningPage.isZoningLoaded()
+    expect(isloaded).to.eq(true, "Zonning wasn't loaded")
   })
 })

@@ -151,14 +151,22 @@ exports.config = {
     rimraf('ScreenShots/*', function () {
       console.log('ScreenShots cleared');
     });
+
+    rimraf('allure-report/*', function () {
+      console.log('allure-report cleared');
+    });
+
+    rimraf('allure-results/*', function () {
+      console.log('allure-results cleared');
+    });
   },
 
-  before: function (capabilities, specs) {
+  /*before: function (capabilities, specs) {
     console.log("**BEFORE**")
     require('ts-node').register({
       files: true
     });
-  },
+  },*/
   /**
    * Runs before a WebdriverIO command gets executed.
    * @param {String} commandName hook command name
@@ -178,7 +186,8 @@ exports.config = {
    * Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
    * @param {Object} test test details
    */
-  beforeTest: function (test) {
+ 
+   beforeTest: function (test) {
     browser.maximizeWindow()
     console.log('----METHOD STARTS: ' + test.title + '-----------')
     if (this.hostname) {
@@ -189,7 +198,7 @@ exports.config = {
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
    * beforeEach in Mocha)
    */
-  beforeHook: function () {
+ /* beforeHook: function () {
   },
   /**
    * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling

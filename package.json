@@ -5,7 +5,7 @@
   "repository": "https://github.com/jpolley/WebdriverIO_v5_TypeScript",
   "scripts": {
     "test-grid": "wdio wdio.grid.conf.js",
-    "test-local-stage": "cross-env TEST_ENV=staging wdio wdio.local.conf.js",
+    "test-local-stage": "cross-env TEST_ENV=staging DEBUG=1 wdio wdio.local.conf.js",
     "lint": "tslint --fix 'test/**/*.ts' && tslint --fix 'src/**/*.ts'",
     "report": "allure generate ./allure-results --clean && allure open",
     "report-ci": "allure generate allure-results --clean -o allure-report"

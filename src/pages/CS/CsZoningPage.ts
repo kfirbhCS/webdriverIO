@@ -18,6 +18,32 @@ export default class CsDashboardPage extends CsBasePage {
     return $("zoning-creation-modal")
   }
 
+  private get zoningIframeWrapper(){
+   
+    return $("#zoning-iframe")
+  }
+
+  private get zoningInnerFrame(){
+ 
+    return $("iframe")
+  }
+  private get zoningsTopLevelContainer(){
+    //return $('body').shadow$('div.llBlk')
+    return $('div.llBlk')
+  }
+
+  private get firstZoningElement(){
+    return this.zoningsTopLevelContainer.shadow$("app-zone-elements")
+  }
+
+  private get backToZoningLink(){
+    return $(".zoning-editor-navbar__back")
+  }
+
+  private get ZoningsTableRows(){
+    return $("zoning-list").$$(".cs-table__row")
+  }
+
   public clickOnNewZoningButton(): ZoningCreationModal {
     this.newZoningBtn.click();
     return new ZoningCreationModal(this.zoningCreationModalContainer);
@@ -43,20 +69,33 @@ export default class CsDashboardPage extends CsBasePage {
   }
 
 
-  public isZoningLoaded() {
+  public isZoningLoaded() {   
     browser.waitUntil(() => {
-      return $("zoning-iframe").isDisplayed()
+     return this.zoningIframeWrapper.isDisplayed()
+    }, 10000, "waiting for i frame wrapper")
+
+    ///switch to the frame
+    browser.switchToFrame("zoning-iframe")
+    
+  
+    browser.waitUntil(() => {
+      return this.zoningInnerFrame.isDisplayed()
     }, 10000, "waiting for i frame")
 
-    browser.switchToFrame("zoning-iframe")
-    let innerFrame = $("iframe")
-    browser.switchToFrame(innerFrame)
-    browser.switchToFrame
+
+    browser.switchToFrame(this.zoningInnerFrame)
+
     try {
       browser.waitUntil(() => {
-        return $('div.llBlk').isDisplayed()
-      }, 10000, "Zoning shadow container was not loaded")
-      return $('div.llBlk').shadow$("app-zone-elements").isDisplayed()
+        return this.zoningsTopLevelContainer.isEnabled()
+      }, 20000, "Zoning shadow container was not loaded")
+
+      browser.waitUntil(() => {
+        return  this.firstZoningElement.isEnabled()
+      }, 20000, "Zoning first element was not loaded")
+
+      let result : boolean =  this.firstZoningElement.isDisplayed()
+      return result;
     } finally  {
       browser.switchToParentFrame()
     }
@@ -64,16 +103,19 @@ export default class CsDashboardPage extends CsBasePage {
   }
 
   public clickBackToZoningLink() {
-    $(".zoning-editor-navbar__back").click()
+    this.backToZoningLink.click()
   }
 
   public clickOnRowByZoneName(name: string) {
-    let rows = $("zoning-list").$$(".cs-table__row")
+    let rows = this.ZoningsTableRows;
+
     let row = rows.find((currentRow) => {
       return currentRow.$$("cs-table-cell")[1].getText() === name
     })
-    if (row != undefined)
-      row.click()
+    if (row != undefined){
+      $$("cs-table-cell")[1].click()
+    }
+    
 
   }
 

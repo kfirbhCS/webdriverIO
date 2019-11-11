@@ -8,33 +8,37 @@ export default class ClientZoningPage {
 		return $('.ContentSquare--no-scrap').shadow$('button.zoning-analyze-button')
 	}
 
-	private get zoningNameTextBox(){
+	private get zoningNameTextBox() {
 		return $('.ContentSquare--no-scrap').shadow$(".zoning-modal-container__input--text")
 	}
 
-	private get popupSaveToCS(){
+	private get popupSaveToCS() {
 		return $('.ContentSquare--no-scrap').shadow$('button.zoning-modal-container__footer--analyse')
 	}
 
-	private get clientSiteEmailTb(){
-		return 	$("#CustomerLogin_CustomerLoginFormData_Email")
+	private get clientSiteEmailTb() {
+		return $("#CustomerLogin_CustomerLoginFormData_Email")
 	}
 	/* #endregion */
 
 	public clickOnAcceptButton() {
 
 		try {
+			
 			browser.waitUntil(() => {
 				return this.acceptBtn.isEnabled()
 			}, 5000, "AcceptBtn")
-			browser.pause(2000)
-			this.acceptBtn.doubleClick()
-			browser.waitUntil(() => {
-				return !(this.acceptBtn.isDisplayed())
-			}, 7000, "AcceptBtn")
-			browser.pause(5000)
+
+			while (this.acceptBtn.isDisplayed()) {
+				browser.pause(5000)
+				this.acceptBtn.click()
+			
+				browser.waitUntil(() => {
+					return !(this.acceptBtn.isDisplayed())
+				}, 5000, "Accept Btn clicked")
+			}
 		} catch (err) {
-			console.log("Accept btn is missing ")
+			console.log("Accept failed to click on accept btn ")
 		}
 	}
 
@@ -50,7 +54,7 @@ export default class ClientZoningPage {
 		let counter: number = 0
 		while (!success && counter < 10) {
 			try {
-			this.clientSiteEmailTb.click()
+				this.clientSiteEmailTb.click()
 				success = true
 			} catch (err) {
 				browser.pause(1000)
@@ -76,7 +80,7 @@ export default class ClientZoningPage {
 				return this.zoningNameTextBox.isEnabled()
 			}, 5000, "shadow dom text box is not enabled")
 			browser.pause(2000)
-		this.zoningNameTextBox.setValue(name)
+			this.zoningNameTextBox.setValue(name)
 		} catch (err) {
 			console.log("failed to set shadow dom element with value")
 		}

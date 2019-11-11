@@ -1,62 +1,76 @@
 import CsBasePage from 'src/pages/CS/CsBasePage'
 import CsDashboardPage from 'src/pages/CS/CsDashboardPage'
-
+import allureReporter from '@wdio/allure-reporter'
 export default class CsLoginPage extends CsBasePage {
-  constructor() {
-    super();
-    //console.log("Creating instance of login page")
-  }
-  private loadLoginPage() {
-    return this.navigateToHomePage;
-  }
+	constructor() {
+		super();
+	}
 
-  public test1(): String {
-    return "Hello"
-  }
+	private get dashboard() {
+		return $("#dashboard-chart")
+	}
 
-  private getLoginButton(): WebdriverIO.Element {
-    return $('.login-form__submit')
-  }
+	private loadLoginPage() {
+		allureReporter.startStep("loading login page")
+		this.navigateToHomePage;
+		allureReporter.endStep();
+	}
 
-  private getEmailTB(): WebdriverIO.Element {
-    return $('.login-form__username-input')
-  }
+	public test1(): String {
+		return "Hello"
+	}
 
-  private getPasswordTB() {
-    return $(".login-form__password-input")
-  }
+	private getLoginButton(): WebdriverIO.Element {
+		return $('.login-form__submit')
+	}
 
-  private setEmailAddress(email) {
-    this.getEmailTB().setValue(email)
-  }
+	private getEmailTB(): WebdriverIO.Element {
+		return $('.login-form__username-input')
+	}
 
-  private setPassWord(password) {
-    this.getPasswordTB().setValue(password)
-  }
+	private getPasswordTB() {
+		return $(".login-form__password-input")
+	}
+	private clickOnLoginButton() {
+		this.getLoginButton().click
+	}
 
-  private clickOnLoginButton() {
-    this.getLoginButton().click
-  }
+	/**
+	 * This function will load the login page and commit login and return the dashbord page
+	 * @param {String} email 
+	 * @param {String} password 
+	 */
+	public loadPageAndLogin(email: string, password: string): CsDashboardPage {
+		this.loadLoginPage();
+		browser.debug()
+		if (this.dashboard.isDisplayed()) {
+			console.log("dashboard page is allready loaded")
+			return new CsDashboardPage();
+		} else {
+			
+			allureReporter.startStep("Authentication")
 
-  /**
-   * This function will load the login page and commit login and return the dashbord page
-   * @param {String} email 
-   * @param {String} password 
-   */
-  public loadPageAndLogin(email: string, password: string): CsDashboardPage {
-    this.loadLoginPage();
-    browser.waitUntil(() => {
-      return this.getEmailTB().isDisplayed()
-    }, 15000, "Email text was not loaded");
-    this.getEmailTB().setValue(email);
-    this.getLoginButton().click()
-    browser.waitUntil(() => {
-      return this.getPasswordTB().isDisplayed()
-    }, 30000, "Password text box was not loaded");
+			browser.waitUntil(() => {
+				return this.getEmailTB().isDisplayed()
+			}, 15000, "Email text was not loaded");
+			
+			allureReporter.startStep("Set user name")
+			this.getEmailTB().setValue(email);
+			allureReporter.endStep()
 
-    this.getPasswordTB().setValue(password)
-    this.getLoginButton().click()
-    return new CsDashboardPage();
-  }
+			this.getLoginButton().click();
+
+			browser.waitUntil(() => {
+				return this.getPasswordTB().isDisplayed()
+			}, 30000, "Password text box was not loaded");
+
+			allureReporter.startStep("set password")
+			this.getPasswordTB().setValue(password)
+			allureReporter.endStep()
+			allureReporter.endStep()
+			this.getLoginButton().click()
+			return new CsDashboardPage();
+		}
+	}
 
 }

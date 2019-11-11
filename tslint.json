@@ -16,8 +16,8 @@
         "no-var-keyword": true,
         "indent": [
             true,
-            "spaces",
-            2
+            "tabs",
+            1
         ],
         "eofline": false,
         "whitespace": false,

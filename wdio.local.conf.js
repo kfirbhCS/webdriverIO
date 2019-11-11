@@ -10,7 +10,7 @@ wdioConf.capabilities=[{
   browserName: 'chrome'
 }]
 wdioConf.specs=[
-  './test/CS/*.spec.ts'
+  './test/CS/*.spec.js'
 ]
 wdioConf.suites = {
   login: [

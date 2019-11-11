@@ -74,7 +74,6 @@ export default class ZoningModal {
       }, 5000, "failed to select page")
     }catch(error){
       console.log("failed to select page")
-      browser.debug()
     }
    
     
