@@ -23,23 +23,24 @@ export default class ClientZoningPage {
 
 	public clickOnAcceptButton() {
 
-		try {
-			
 			browser.waitUntil(() => {
 				return this.acceptBtn.isEnabled()
-			}, 5000, "AcceptBtn")
+			}, 5000, "AcceptBtn was not loaded")
 
-			while (this.acceptBtn.isDisplayed()) {
-				browser.pause(5000)
+			let count = 0
+			while (this.acceptBtn.isDisplayed() && count <5) {
+				try {
 				this.acceptBtn.click()
 			
 				browser.waitUntil(() => {
 					return !(this.acceptBtn.isDisplayed())
-				}, 5000, "Accept Btn clicked")
+				}, 7000, "AcceptBtn is visible")
 			}
-		} catch (err) {
-			console.log("Accept failed to click on accept btn ")
-		}
+			catch (err) {
+			 count ++
+				console.log(`Accept failed to click on accept btn (${err})`)
+			}
+		} 
 	}
 
 	public closeClientWindow() {

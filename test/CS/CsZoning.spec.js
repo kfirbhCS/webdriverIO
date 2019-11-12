@@ -9,7 +9,7 @@ const DeviceTypePanel_1 = require("src/components/DeviceTypePanel");
 const ClientZoningPage_1 = __importDefault(require("src/pages/CS/ClientZoningPage"));
 const chai_1 = require("chai");
 describe('TEST-559', () => {
-    it('should creat new zonning', () => {
+    it('should create new zonning', () => {
         let loginPage = new CsLoginPage_1.default();
         let currentPage = loginPage.loadPageAndLogin(config_1.config.CSEmail, config_1.config.CSPassword);
         let zoningPage = currentPage.getTopPanel().clickOnAnalyseTab().clickOnZoningAnalysisOption();
@@ -43,5 +43,11 @@ describe('TEST-559', () => {
         let isloaded = zoningPage.isZoningLoaded();
         chai_1.expect(isloaded).to.eq(true, "Zonning wasn't loaded");
     });
+    it('should delete all zonings by name', () => {
+        let loginPage = new CsLoginPage_1.default();
+        let currentPage = loginPage.loadPageAndLogin(config_1.config.CSEmail, config_1.config.CSPassword);
+        let zoningPage = currentPage.getTopPanel().clickOnAnalyseTab().clickOnZoningAnalysisOption();
+        zoningPage.deleteAllRowsByName("Automation_");
+    });
 });
-//# sourceMappingURL=CsLogin.spec.js.map
+//# sourceMappingURL=CsZoning.spec.js.map

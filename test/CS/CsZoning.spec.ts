@@ -7,7 +7,7 @@ import {expect} from 'chai';
 
 describe('TEST-559',() =>{
  
-  it('should creat new zonning', ()=>{
+  it('should create new zonning', ()=>{
     
     let loginPage = new CsLoginPage()
     let currentPage = loginPage.loadPageAndLogin(config.CSEmail,config.CSPassword )
@@ -43,4 +43,12 @@ describe('TEST-559',() =>{
     let isloaded = zoningPage.isZoningLoaded()
     expect(isloaded).to.eq(true, "Zonning wasn't loaded")
   })
+
+  it('should delete all zonings by name', () =>{
+    let loginPage = new CsLoginPage()
+    let currentPage = loginPage.loadPageAndLogin(config.CSEmail,config.CSPassword )
+    let zoningPage =currentPage.getTopPanel().clickOnAnalyseTab().clickOnZoningAnalysisOption();
+    zoningPage.deleteAllRowsByName("Automation_")
+  })
+
 })

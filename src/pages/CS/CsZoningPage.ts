@@ -115,9 +115,39 @@ export default class CsDashboardPage extends CsBasePage {
     if (row != undefined){
       $$("cs-table-cell")[1].click()
     }
-    
-
   }
+
+  public deleteRowByName(name: string){
+    let rows = this.ZoningsTableRows;
+    let row = rows.find((currentRow) => {
+      return currentRow.$$("cs-table-cell")[1].getText() === name
+    })
+
+    if (row != undefined){
+      this.deleteRow(row)
+    }
+  }
+
+  public deleteAllRowsByName(name: string)
+  {
+    let rows = this.ZoningsTableRows;
+    let rows1 = rows.filter((currentRow) => {
+      return currentRow.$$("cs-table-cell")[1].getText() === name
+    })
+    rows1.forEach((a ) => {
+      this.deleteRow(a)
+      browser.pause(2000)
+    })
+    
+  }
+
+  private deleteRow(row : WebdriverIO.Element){
+    let cells = row.$$("cs-table-cell")
+    cells[cells.length-1].$("zoning-item-action-list").click();
+    cells[cells.length-1].$("cs-action-list-item[data-cy='action-delete']").click()
+    $(".danger").click()
+  }
+
 
 
 }

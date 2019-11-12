@@ -42,6 +42,13 @@ export default class CsLoginPage extends CsBasePage {
 	 */
 	public loadPageAndLogin(email: string, password: string): CsDashboardPage {
 		this.loadLoginPage();
+			try{
+		 browser.waitUntil(() => {
+				return this.dashboard != undefined && this.dashboard.isDisplayed()
+			},5000,"waiting for dashboard")
+			}catch(err){
+				
+			}
 		if (this.dashboard.isDisplayed()) {
 			console.log("dashboard page is allready loaded")
 			return new CsDashboardPage();
