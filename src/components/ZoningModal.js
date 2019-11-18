@@ -9,44 +9,73 @@ class ZoningModal {
         this.parent = parent;
     }
     get rightPanel() {
-        return $(".zoning-creation-modal__right-panel");
+        return $('.zoning-creation-modal__right-panel');
     }
     get rightPanelHeader() {
-        return this.rightPanel.$("zoning-creation-modal__right-panel-title").getText();
+        return this.rightPanel.$('zoning-creation-modal__right-panel-title').getText();
     }
     get pagefilterIcon() {
-        return this.rightPanel.$(".zoning-creation-modal__right-panel-filter-page-icon");
+        return this.rightPanel.$('.zoning-creation-modal__right-panel-filter-page-icon');
     }
     get mappingPanel() {
-        return $(".mapping-page-select__panel");
+        return $('.mapping-page-select__panel');
     }
     get mappingsPanelResults() {
-        return this.mappingPanel.$$(".mapping-page-select__result-name");
+        return this.mappingPanel.$$('.mapping-page-select__result-name');
+    }
+    get pageResultsPanel() {
+        return $$('.mapping-page-select__panel')[1];
+    }
+    get pageResultsRows() {
+        return $$('.mapping-page-select__page-section');
+    }
+    get letsGoBtn() {
+        return $('.zoning-creation-modal__right-panel-buttons-confirm');
+    }
+    selectMappingAndPageByText(mappingText, pagesText) {
+        this.clickOnMappingsByText(mappingText);
+        this.clickOnPageRowByText(pagesText);
+    }
+    selectPageByMappingAndPageIndex(mappingIndex, pageIndex) {
+        const pageResults = this.clickOnMappingByIndex(mappingIndex);
+        this.selectPageRowByIndex(pageIndex);
+    }
+    clickOnAnalyseGroupCB() {
+        this.rightPanel.$$('.zoning-creation-modal__right-panel-analysis-choice-item-content-selection-checkbox')[0].click();
+    }
+    clickOnAnalyseASingle() {
+        this.rightPanel.$$('.zoning-creation-modal__right-panel-analysis-choice-item-content-selection-checkbox')[1].click();
+    }
+    selectDeviceType(type) {
+        browser.waitUntil(() => {
+            return $('.device-selector-container').isEnabled();
+        }, 5000, 'Failed to find device container');
+        const container = $('.device-selector-container').$('.device-selector-item');
+        const panel = new DeviceTypePanel_1.default(container);
+        panel.clickOnDeviceByType(type);
+    }
+    clickOnLetsGoBtn() {
+        this.letsGoBtn.click();
     }
     clickOnSerarch() {
         this.pagefilterIcon.click();
         return this.mappingPanel;
     }
-    get pageResultsPanel() {
-        return $$(".mapping-page-select__panel")[1];
-    }
-    get pageResultsRows() {
-        return $$(".mapping-page-select__page-section");
-    }
     clickOnMappingByIndex(index) {
         this.pagefilterIcon.click();
-        let mappings = this.mappingsPanelResults;
-        let mapping = mappings[index];
+        const mappings = this.mappingsPanelResults;
+        const mapping = mappings[index];
         mapping.click();
         return this.pageResultsRows;
     }
-    get letsGoBtn() {
-        return $('.zoning-creation-modal__right-panel-buttons-confirm');
-    }
     clickOnMappingsByText(text) {
         this.pagefilterIcon.click();
-        let rows = this.mappingsPanelResults;
-        let row = rows.find((row) => {
+        browser.waitUntil(() => {
+            return this.mappingsPanelResults.length > 0;
+        }, 5000, 'results were not loaded');
+        const rows = this.mappingsPanelResults;
+        console.log('number of results :' + rows.length);
+        const row = rows.find((row) => {
             return (row.getText() === `${text}`);
         });
         if (row) {
@@ -59,14 +88,14 @@ class ZoningModal {
     clickOnPageRowByText(text) {
         try {
             browser.waitUntil(() => {
-                return this.pageResultsPanel.$$(".mapping-page-select__page-section").length > 0;
-            }, 5000, "failed to select page");
+                return this.pageResultsPanel.$$('.mapping-page-select__page-section').length > 0;
+            }, 5000, 'failed to select page');
         }
         catch (error) {
-            console.log("failed to select page");
+            console.log('failed to select page');
         }
-        let rows = this.pageResultsPanel.$$(".mapping-page-select__page-section");
-        let row = rows.find((row) => {
+        const rows = this.pageResultsPanel.$$('.mapping-page-select__page-section');
+        const row = rows.find((row) => {
             return (row.getText() === `${text}`);
         });
         if (row) {
@@ -77,33 +106,8 @@ class ZoningModal {
         }
     }
     selectPageRowByIndex(index) {
-        let rows = this.pageResultsPanel.$$(".mapping-page-select__page-section");
+        const rows = this.pageResultsPanel.$$('.mapping-page-select__page-section');
         rows[index].click();
-    }
-    selectMappingAndPageByText(mappingText, pagesText) {
-        this.clickOnMappingsByText(mappingText);
-        this.clickOnPageRowByText(pagesText);
-    }
-    selectPageByMappingAndPageIndex(mappingIndex, pageIndex) {
-        let pageResults = this.clickOnMappingByIndex(mappingIndex);
-        this.selectPageRowByIndex(pageIndex);
-    }
-    clickOnAnalyseGroupCB() {
-        this.rightPanel.$$(".zoning-creation-modal__right-panel-analysis-choice-item-content-selection-checkbox")[0].click();
-    }
-    clickOnAnalyseASingle() {
-        this.rightPanel.$$(".zoning-creation-modal__right-panel-analysis-choice-item-content-selection-checkbox")[1].click();
-    }
-    selectDeviceType(type) {
-        browser.waitUntil(() => {
-            return $(".device-selector-container").isEnabled();
-        }, 5000, "Failed to find device container");
-        let container = $(".device-selector-container").$(".device-selector-item");
-        let panel = new DeviceTypePanel_1.default(container);
-        panel.clickOnDeviceByType(type);
-    }
-    clickOnLetsGoBtn() {
-        this.letsGoBtn.click();
     }
 }
 exports.default = ZoningModal;

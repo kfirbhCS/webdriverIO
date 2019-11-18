@@ -1,11 +1,9 @@
 export default class TopPanelSubMenu {
- protected browser ;
- 
- public constructor(parent){
-    this.browser=parent;
-  }
-
-  protected getOptions(){
-   return this.browser.$$(".sub-menu-item")
-  }
- }
+	private  parentElement ;
+	public constructor(parent) {
+		this.parentElement=parent;
+	}
+	protected getOptions() {
+		return this.parentElement.$$('.sub-menu-item');
+	}
+}

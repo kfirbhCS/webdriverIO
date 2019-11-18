@@ -1,6 +1,6 @@
 
+/* eslint-disable */
 const timeout = process.env.DEBUG ? 99999999 : 120000;
-
 exports.config = {
   //
   // ====================
@@ -9,9 +9,9 @@ exports.config = {
   //
   // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
   // on a remote machine).
-  debug: process.env.DEBUG === '1',
-  execArgv: process.env.DEBUG === '1' ? ['--inspect-brk=127.0.0.1:5859'] : [],
-  runner: 'local',
+  debug: process.env.DEBUG === "1",
+  execArgv: process.env.DEBUG === "1" ? ["--inspect-brk=127.0.0.1:5859"] : [],
+  runner: "local",
 
   //
   // ==================
@@ -51,7 +51,7 @@ exports.config = {
     // 5 instances get started at a time.
     maxInstances: 5,
     //
-    browserName: 'chrome'
+    browserName: "chrome",
   }],
   //
   // ===================
@@ -60,7 +60,7 @@ exports.config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error
-  logLevel: 'error',
+  logLevel: "error",
   //
   // Warns when a deprecated command is used
   deprecationWarnings: true,
@@ -73,7 +73,7 @@ exports.config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: 'http://the-internet.herokuapp.com',
+  baseUrl: "http://the-internet.herokuapp.com",
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -89,31 +89,31 @@ exports.config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ['selenium-standalone'],
+  services: ["selenium-standalone"],
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
   // see also: https://webdriver.io/docs/frameworks.html
   //
   // Make sure you have the wdio adapter package for the specific framework installed
   // before running any tests.
-  framework: 'mocha',
+  framework: "mocha",
   //
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter.html
-  reporters: ['spec', ['allure', {
-    outputDir: 'allure-results',
+  reporters: ["spec", ["allure", {
     disableWebdriverStepsReporting: true,
+    outputDir: "allure-results",
   }]],
   //
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
     compilers: [
-      'tsconfig-paths/register'
+      "tsconfig-paths/register",
     ],
-    ui: 'bdd',
-    timeout: timeout
+    timeout: timeout,
+    ui: "bdd",
   },
   //
   // =====
@@ -145,19 +145,19 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {Array.<String>} specs List of spec file paths that are to be run
    */
-  onPrepare: function (capabilities) {
-    console.log("********Prepare*****************")
-    const rimraf = require('rimraf');
-    rimraf('ScreenShots/*', function () {
-      console.log('ScreenShots cleared');
+  onPrepare: function(capabilities) {
+    console.log("********Prepare*****************");
+    const rimraf = require("rimraf");
+    rimraf("ScreenShots/*", function() {
+      console.log("ScreenShots cleared");
     });
 
-    rimraf('allure-report/*', function () {
-      console.log('allure-report cleared');
+    rimraf("allure-report/*", function() {
+      console.log("allure-report cleared");
     });
 
-    rimraf('allure-results/*', function () {
-      console.log('allure-results cleared');
+    rimraf("allure-results/*", function() {
+      console.log("allure-results cleared");
     });
   },
 
@@ -179,19 +179,21 @@ exports.config = {
    * Hook that gets executed before the suite starts
    * @param {Object} suite suite details
    */
-  beforeSuite: function (suite) {
-    console.log('----SUITE STARTS: ' + suite.title + '-----------')
+  beforeSuite: function(suite) {
+    // tslint:disable-next-line:no-console
+    console.log("----SUITE STARTS: " + suite.title + "-----------");
   },
   /**
    * Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
    * @param {Object} test test details
    */
- 
-   beforeTest: function (test) {
-    browser.maximizeWindow()
-    console.log('----METHOD STARTS: ' + test.title + '-----------')
+
+   beforeTest: function(test) {
+    //webDriver.manage().window().setSize(new Dimension(1600,900));
+    browser.setWindowSize(1400, 1000);
+    console.log("----METHOD STARTS: " + test.title + "-----------");
     if (this.hostname) {
-      console.log('Grid node Address ' + browser.gridTestSession(browser.sessionId).proxyId)
+      console.log("Grid node Address " + browser.gridTestSession(browser.sessionId).proxyId);
     }
   },
   /**
@@ -210,18 +212,18 @@ exports.config = {
    * Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
    * @param {Object} test test details
    */
-  afterTest: function (test) {
+  afterTest: function(test) {
     if (test.error !== undefined) {
       browser.takeScreenshot();
     }
-    console.log('----METHOD FINISHED: ' + test.title + '-----------')
+    console.log("----METHOD FINISHED: " + test.title + "-----------");
   },
   /**
    * Hook that gets executed after the suite has ended
    * @param {Object} suite suite details
    */
-  afterSuite: function (suite) {
-    console.log('----SUITE FINISHED: ' + suite.title + '-----------')
+  afterSuite: function(suite) {
+    console.log("----SUITE FINISHED: " + suite.title + "-----------");
   },
 
   /**
@@ -248,7 +250,7 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {Array.<String>} specs List of spec file paths that ran
    */
-  afterSession: function (config, capabilities, specs) {
+  afterSession: function(config, capabilities, specs) {
     //console.log('SESSION ENDED ')
   },
   /**
@@ -258,9 +260,9 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  onComplete: function (exitCode, config, capabilities, results) {
+  onComplete: function(exitCode, config, capabilities, results) {
 
-    console.log("**********************************************************")
-    console.log("Execution completed with exit code " + exitCode + " results : " + JSON.stringify(results))
-  }
-}
+    console.log("**********************************************************");
+    console.log("Execution completed with exit code " + exitCode + " results : " + JSON.stringify(results));
+  },
+};

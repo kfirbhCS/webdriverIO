@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class TopPanelSubMenu {
     constructor(parent) {
-        this.browser = parent;
+        this.parentElement = parent;
     }
     getOptions() {
-        return this.browser.$$(".sub-menu-item");
+        return this.parentElement.$$('.sub-menu-item');
     }
 }
 exports.default = TopPanelSubMenu;

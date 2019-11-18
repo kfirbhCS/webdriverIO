@@ -1,15 +1,15 @@
-import TopPanelSubMenu from '/src/components/TopPanelSubMenu'
+import TopPanelSubMenu from 'src/components/TopPanelSubMenu';
 import CsDashboardPage from 'src/pages/CS/CsDashboardPage';
 export default class DefineSubMenu extends TopPanelSubMenu {
   public constructor(parent) {
-    super(parent)
+    super(parent);
   }
 
   public clickOnMappingOption() {
     this.getOptions()[0].click();
-    return new CsDashboardPage()
+    return new CsDashboardPage();
   }
-  
+
   public clickOnGoalsOption() {
     this.getOptions()[1].click();
     return new CsDashboardPage();
