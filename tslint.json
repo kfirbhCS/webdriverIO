@@ -1,34 +1,35 @@
 {
-    "defaultSeverity": "error",
-    "no-default-export": false,
-    "extends": [
-        "tslint:recommended"
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "ban": [
+      true,
+      "eval",
+      {
+          "name": ["browser", "debug"],
+          "message": "this will fail your PR and won't allow to push"
+        },
+        {
+          "name": ["it", "only"],
+          "message": "this will fail your PR and won't allow to push"
+        }
+  ],
+    "object-literal-sort-keys": false,
+    "no-submodule-imports": [
+      false
     ],
-    "jsRules": {},
-    "rules": {
-        "quotemark": [
-            true,
-            "single",
-            "avoid-escape",
-            "jsx-double"
-        ],
-        "trailing-comma": false,
-        "no-var-keyword": true,
-        "no-console": false,
-        "no-bitwise": false,
-        "one-variable-per-declaration": false,
-        "object-literal-sort-keys": false,
-        "indent": [
-            true,
-            "tabs",
-            1
-        ],
-        "eofline": false,
-        "whitespace": false,
-        "import-spacing": false,
-        "prefer-const": true,
-        "member-access": false,
-        "no-unused-expression": false
-    },
-    "rulesDirectory": []
+    "interface-name": [
+      false
+    ],
+    "max-classes-per-file": [
+      false
+    ],
+    "no-implicit-dependencies": [
+      false
+    ],
+    "only-arrow-functions": false,
+    "no-unused-expression": false
+  }
 }

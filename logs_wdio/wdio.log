@@ -1,0 +1,13 @@
+2020-07-09T06:43:08.751Z WARN @wdio/config:ConfigParser: pattern ./tests/**/*.spec.ts did not match any file
+2020-07-09T06:43:08.824Z INFO @wdio/cli:launcher: Run onPrepare hook
+2020-07-09T06:43:09.944Z ERROR @wdio/cli:utils: A service failed in the 'onPrepare' hook
+Error: Missing /Users/kfirb/dev/personal/webdriverIO/node_modules/selenium-standalone/.selenium/chromedriver/2.43-x64-chromedriver
+    at /Users/kfirb/dev/personal/webdriverIO/node_modules/selenium-standalone/lib/check-paths-existence.js:15:20
+    at suppressedCallback (fs.js:202:5)
+    at FSReqCallback.oncomplete (fs.js:146:23)
+
+Continue...
+2020-07-09T06:43:09.947Z INFO @wdio/local-runner: Start worker 0-0 with arg: wdio.conf.js,--spec,test/unit.test.js
+2020-07-09T06:43:21.664Z INFO @wdio/cli:launcher: Run onComplete hook
+2020-07-09T06:43:21.665Z INFO @wdio/local-runner: Shutting down spawned worker
+2020-07-09T06:43:21.920Z INFO @wdio/local-runner: Waiting for 0 to shut down gracefully

@@ -1,0 +1,86 @@
+Using reporter config:[
+  [
+    "junit",
+    {
+      "outputDir": "logs/junit"
+    }
+  ],
+  [
+    null,
+    {
+      "saveAllVideos": false,
+      "videoSlowdownMultiplier": 5,
+      "videoRenderTimeout": 60
+    }
+  ],
+  [
+    "allure",
+    {
+      "outputDir": "allure-results",
+      "disableWebdriverStepsReporting": true,
+      "disableWebdriverScreenshotsReporting": true
+    }
+  ]
+]
+
+Using config:{
+  "debugMode": false,
+  "logLevel": "info",
+  "videoRenderTimeout": 60,
+  "outputDir": "logs_wdio",
+  "allureOutputDir": "/Users/kfirb/dev/personal/webdriverIO/allure-results",
+  "rawPath": "rawSeleniumVideoGrabs",
+  "usingAllure": true,
+  "saveAllVideos": false,
+  "videoSlowdownMultiplier": 5,
+  "excludedActions": [],
+  "jsonWireActions": [
+    "url",
+    "forward",
+    "back",
+    "refresh",
+    "execute",
+    "size",
+    "position",
+    "maximize",
+    "click",
+    "submit",
+    "value",
+    "keys",
+    "clear",
+    "selected",
+    "enabled",
+    "displayed",
+    "orientation",
+    "alert_text",
+    "accept_alert",
+    "dismiss_alert",
+    "moveto",
+    "buttondown",
+    "buttonup",
+    "doubleclick",
+    "down",
+    "up",
+    "move",
+    "scroll",
+    "doubleclick",
+    "longclick",
+    "flick",
+    "location"
+  ]
+}
+
+
+Max waiting time: 60s
+
+--- Video /Users/kfirb/dev/personal/webdriverIO/logs_wdio/Cherchertech-Home-Page--Get-title-of-cherchertech-Home-page--FIREFOX--07-09-2020--09-43-15-874.mp4 ---
+Waiting for video to exist: 0s
+Waiting for video to be ready: 0s
+
+Generated:[
+  "/Users/kfirb/dev/personal/webdriverIO/logs_wdio/Cherchertech-Home-Page--Get-title-of-cherchertech-Home-page--FIREFOX--07-09-2020--09-43-15-874.mp4"
+]
+
+
+
+Done!

@@ -1,0 +1,96 @@
+2020-07-09T06:43:10.202Z INFO @wdio/local-runner: Run worker command: run
+2020-07-09T06:43:10.408Z WARN @wdio/config:ConfigParser: pattern ./tests/**/*.spec.ts did not match any file
+2020-07-09T06:43:10.569Z ERROR @wdio/local-runner:utils: Error in beforeSession: ReferenceError: beforeLogger is not defined
+    at Object.beforeSession (/Users/kfirb/dev/personal/webdriverIO/typed.wdio.conf.ts:277:4)
+    at /Users/kfirb/dev/personal/webdriverIO/node_modules/@wdio/runner/build/utils.js:41:14
+    at Array.map (<anonymous>)
+    at runHook (/Users/kfirb/dev/personal/webdriverIO/node_modules/@wdio/runner/build/utils.js:39:83)
+    at Runner.run (/Users/kfirb/dev/personal/webdriverIO/node_modules/@wdio/runner/build/index.js:95:31)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+2020-07-09T06:43:10.570Z INFO webdriverio: Initiate new session using the webdriver protocol
+2020-07-09T06:43:10.571Z INFO webdriver: [POST] http://localhost:4444/wd/hub/session
+2020-07-09T06:43:10.571Z INFO webdriver: DATA {
+  capabilities: {
+    alwaysMatch: { browserName: 'firefox', 'goog:chromeOptions': [Object] },
+    firstMatch: [ {} ]
+  },
+  desiredCapabilities: {
+    browserName: 'firefox',
+    'goog:chromeOptions': { w3c: false, args: [Array], prefs: [Object] }
+  }
+}
+2020-07-09T06:43:15.873Z ERROR @wdio/sync: ReferenceError: TestLogger is not defined
+    at Object.beforeSuite (/Users/kfirb/dev/personal/webdriverIO/typed.wdio.conf.ts:316:26)
+    at execHook (/Users/kfirb/dev/personal/webdriverIO/node_modules/@wdio/sync/build/executeHooksWithArgs.js:32:23)
+2020-07-09T06:43:15.891Z ERROR @wdio/sync: TypeError: Cannot read property 'error' of undefined
+    at Object.beforeTest (/Users/kfirb/dev/personal/webdriverIO/typed.wdio.conf.ts:345:19)
+    at execHook (/Users/kfirb/dev/personal/webdriverIO/node_modules/@wdio/sync/build/executeHooksWithArgs.js:32:23)
+2020-07-09T06:43:15.894Z INFO webdriver: COMMAND navigateTo("https://chercher.tech/practice/popups")
+2020-07-09T06:43:15.894Z INFO webdriver: [POST] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/url
+2020-07-09T06:43:15.894Z INFO webdriver: DATA { url: 'https://chercher.tech/practice/popups' }
+2020-07-09T06:43:17.142Z INFO webdriver: COMMAND takeScreenshot()
+2020-07-09T06:43:17.142Z INFO webdriver: [GET] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/screenshot
+2020-07-09T06:43:17.143Z INFO webdriver: COMMAND findElement("xpath", "//input[@name='alert']")
+2020-07-09T06:43:17.144Z INFO webdriver: [POST] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/element
+2020-07-09T06:43:17.144Z INFO webdriver: DATA { using: 'xpath', value: "//input[@name='alert']" }
+2020-07-09T06:43:17.490Z INFO webdriver: RESULT {
+  'element-6066-11e4-a52e-4f735466cecf': '10965c99-e99c-364a-80d2-0931ac52bdbf'
+}
+2020-07-09T06:43:17.493Z INFO webdriver: COMMAND elementClick("10965c99-e99c-364a-80d2-0931ac52bdbf")
+2020-07-09T06:43:17.493Z INFO webdriver: [POST] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/element/10965c99-e99c-364a-80d2-0931ac52bdbf/click
+2020-07-09T06:43:17.518Z INFO webdriver: RESULT iVBORw0KGgoAAAANSUhEUgAACgAAAAZGCAYAAABj9fjdAAAgAElEQVR4nOzd+...
+2020-07-09T06:43:17.561Z INFO webdriver: COMMAND takeScreenshot()
+2020-07-09T06:43:17.561Z INFO webdriver: [GET] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/screenshot
+2020-07-09T06:43:17.561Z INFO webdriver: COMMAND acceptAlert()
+2020-07-09T06:43:17.561Z INFO webdriver: [POST] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/alert/accept
+2020-07-09T06:43:17.584Z WARN webdriver: Request failed due to Dismissed user prompt dialog: I am alert
+2020-07-09T06:43:17.584Z INFO webdriver: Retrying 1/3
+2020-07-09T06:43:17.584Z INFO webdriver: [GET] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/screenshot
+2020-07-09T06:43:17.585Z WARN webdriver: Request failed due to unknown error
+2020-07-09T06:43:17.585Z INFO webdriver: Retrying 1/3
+2020-07-09T06:43:17.585Z INFO webdriver: [POST] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/alert/accept
+2020-07-09T06:43:17.820Z WARN webdriver: Request failed due to unknown error
+2020-07-09T06:43:17.820Z INFO webdriver: Retrying 2/3
+2020-07-09T06:43:17.820Z INFO webdriver: [POST] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/alert/accept
+2020-07-09T06:43:17.824Z WARN webdriver: Request failed due to unknown error
+2020-07-09T06:43:17.824Z INFO webdriver: Retrying 3/3
+2020-07-09T06:43:17.824Z INFO webdriver: [POST] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/alert/accept
+2020-07-09T06:43:17.829Z ERROR webdriver: Request failed due to no such alert: unknown error
+    at getErrorFromResponseBody (/Users/kfirb/dev/personal/webdriverIO/node_modules/webdriver/build/utils.js:121:10)
+    at Request._callback (/Users/kfirb/dev/personal/webdriverIO/node_modules/webdriver/build/request.js:121:64)
+    at Request.self.callback (/Users/kfirb/dev/personal/webdriverIO/node_modules/request/request.js:185:22)
+    at Request.emit (events.js:210:5)
+    at Request.EventEmitter.emit (domain.js:475:20)
+    at Request.<anonymous> (/Users/kfirb/dev/personal/webdriverIO/node_modules/request/request.js:1154:10)
+    at Request.emit (events.js:210:5)
+    at Request.EventEmitter.emit (domain.js:475:20)
+    at IncomingMessage.<anonymous> (/Users/kfirb/dev/personal/webdriverIO/node_modules/request/request.js:1076:12)
+    at Object.onceWrapper (events.js:299:28)
+2020-07-09T06:43:17.834Z INFO webdriver: COMMAND takeScreenshot()
+2020-07-09T06:43:17.834Z INFO webdriver: [GET] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/screenshot
+2020-07-09T06:43:17.845Z INFO webdriver: RESULT iVBORw0KGgoAAAANSUhEUgAACgAAAAZGCAYAAABj9fjdAAAgAElEQVR4nOzd+...
+2020-07-09T06:43:17.851Z INFO webdriver: COMMAND getLogTypes()
+2020-07-09T06:43:17.851Z INFO webdriver: [GET] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/se/log/types
+2020-07-09T06:43:17.862Z WARN webdriver: Request failed due to HTTP method not allowed
+2020-07-09T06:43:17.862Z INFO webdriver: Retrying 1/3
+2020-07-09T06:43:17.862Z INFO webdriver: [GET] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/se/log/types
+2020-07-09T06:43:17.865Z WARN webdriver: Request failed due to HTTP method not allowed
+2020-07-09T06:43:17.865Z INFO webdriver: Retrying 2/3
+2020-07-09T06:43:17.865Z INFO webdriver: [GET] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/se/log/types
+2020-07-09T06:43:17.867Z WARN webdriver: Request failed due to HTTP method not allowed
+2020-07-09T06:43:17.867Z INFO webdriver: Retrying 3/3
+2020-07-09T06:43:17.868Z INFO webdriver: [GET] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb/se/log/types
+2020-07-09T06:43:17.870Z ERROR webdriver: Request failed due to Error: HTTP method not allowed
+    at getErrorFromResponseBody (/Users/kfirb/dev/personal/webdriverIO/node_modules/webdriver/build/utils.js:114:12)
+    at Request._callback (/Users/kfirb/dev/personal/webdriverIO/node_modules/webdriver/build/request.js:121:64)
+    at Request.self.callback (/Users/kfirb/dev/personal/webdriverIO/node_modules/request/request.js:185:22)
+    at Request.emit (events.js:210:5)
+    at Request.EventEmitter.emit (domain.js:475:20)
+    at Request.<anonymous> (/Users/kfirb/dev/personal/webdriverIO/node_modules/request/request.js:1154:10)
+    at Request.emit (events.js:210:5)
+    at Request.EventEmitter.emit (domain.js:475:20)
+    at IncomingMessage.<anonymous> (/Users/kfirb/dev/personal/webdriverIO/node_modules/request/request.js:1076:12)
+    at Object.onceWrapper (events.js:299:28)
+2020-07-09T06:43:17.870Z INFO webdriver: COMMAND deleteSession()
+2020-07-09T06:43:17.871Z INFO webdriver: [DELETE] http://localhost:4444/wd/hub/session/5659a329-36d9-d34f-957d-0c16cead47cb
+2020-07-09T06:43:18.132Z INFO webdriver: RESULT iVBORw0KGgoAAAANSUhEUgAACgAAAAZGCAYAAABj9fjdAAAgAElEQVR4nOzd+...
